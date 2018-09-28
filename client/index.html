@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <html xmlns="http://www.w3.org/1999/xhtml">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link href="lib/login.css" rel="stylesheet">
+</head>
+
+<body onload="doubleLogin()">
+  <div class="container" id="auth">
+    <div class="omb_login">
+      <h3 class="omb_authTitle">Login or <button type="button" class="btn btn-success" data-toggle="modal" data-target="#formRegister">Sign
+          up</button></h3>
+      <div class="row omb_row-sm-offset-3 omb_socialButtons">
+        <div class="col-xs-12 col-sm-6">
+
+          <!-- ==========================login button======================== -->
+
+          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" class="fb-login-button btn btn-block"
+            data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false"
+            data-auto-logout-link="false" data-use-continue-as="false">
+          </fb:login-button>
+        </div>
+
+      </div>
+
+      <div class="row omb_row-sm-offset-3 omb_loginOr">
+        <div class="col-xs-12 col-sm-6">
+          <hr class="omb_hrOr">
+          <span class="omb_spanOr">or</span>
+        </div>
+      </div>
+
+      <div class="row omb_row-sm-offset-3">
+        <div class="col-xs-12 col-sm-6">
+
+          <div class="input-group">
+            <!-- ==========================input======================== -->
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control" name="username" placeholder="email address" v-model="emailUser">
+          </div>
+          <span class="help-block"></span>
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            <input type="password" class="form-control" name="password" placeholder="Password" v-model="passwordUser">
+          </div>
+          <span class="help-block">Password error</span>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" v-on:click="loginManually">Login</button>
+
+        </div>
+      </div>
+      <div class="row omb_row-sm-offset-3">
+        <div class="col-xs-12 col-sm-3">
+          <label class="checkbox">
+            <input type="checkbox" value="remember-me">Remember Me
+          </label>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <p class="omb_forgotPwd">
+            <a href="#">Forgot password?</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="formRegister" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Register</h4>
+          </div>
+
+          <div class="modal-Body">
+            <div class="form-group">
+              <label for="formGroupExampleInput">Name</label>
+              <div class="control">
+                <input class="form-control col-md-2" type="text" v-model="nameUser" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="formGroupExampleInput">Email</label>
+              <div class="control">
+                <input class="form-control" type="text" v-model="emailUser" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="formGroupExampleInput">Password</label>
+              <div class="control">
+                <input class="form-control" type="password" v-model="passwordUser" />
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="createUser">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="clearRegister">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="lib/loginFacebook.js"></script>
+  <script src="vue/script/auth.js"></script>
+  <script src="lib/doubleLogin.js"></script>
+</body>
+
+</html>
